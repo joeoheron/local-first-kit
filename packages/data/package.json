@@ -1,0 +1,24 @@
+{
+  "name": "@local-first-kit/data",
+  "type": "module",
+  "exports": {
+    ".": {
+      "default": "./src/index.ts"
+    },
+    "./sync": {
+      "default": "./src/sync/syncDurableObject.ts"
+    }
+  },
+  "scripts": {
+    "check-types": "tsc --noEmit"
+  },
+  "dependencies": {
+    "tinybase": "^8.2.0"
+  },
+  "devDependencies": {
+    "@local-first-kit/auth": "*",
+    "@local-first-kit/config": "*",
+    "@cloudflare/workers-types": "^4.20251213.0",
+    "typescript": "^5"
+  }
+}

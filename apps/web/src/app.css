@@ -1,0 +1,27 @@
+/* Design tokens — edit here to retheme the entire app */
+:root {
+  --canvas:      210 40% 98%;    /* slate-50  — page background */
+  --surface:     0 0% 100%;      /* white     — cards, inputs */
+  --surface-2:   210 40% 96%;    /* slate-100 — tabs, hover states */
+  --stroke:      214 32% 91%;    /* slate-200 — borders */
+  --fg:          222 47% 11%;    /* slate-900 — primary text */
+  --fg-muted:    215 16% 47%;    /* slate-500 — secondary text */
+  --muted:       215 20% 65%;    /* slate-400 — placeholders */
+  --primary:     221 83% 53%;    /* blue-600 */
+  --primary-fg:  0 0% 100%;
+  --destructive: 0 72% 51%;      /* red-600 */
+  --warning:     32 95% 44%;     /* amber-600 */
+  --success:     142 72% 29%;    /* green-700 */
+  --info:        221 83% 53%;    /* blue-600 */
+}
+
+html {
+  overflow: hidden;
+}
+
+body {
+  background-color: hsl(var(--canvas));
+  color: hsl(var(--fg));
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}

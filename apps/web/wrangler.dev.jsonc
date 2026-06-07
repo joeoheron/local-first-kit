@@ -1,0 +1,52 @@
+// Local workerd dev config — used ONLY by `npm run dev:workers` (wrangler dev).
+//
+// SvelteKit can't host a Durable Object in `vite dev` yet (@cloudflare/vite-plugin
+// has no SvelteKit support — see sveltejs/kit#15627), so to exercise sync/RPC locally
+// we run the *built* worker in the real workerd runtime. `main` points at
+// worker-entry.ts, which re-exports the adapter's _worker.js handler PLUS the
+// WsServerDurableObject class, so the DO works exactly like production.
+//
+// The Cloudflare resources themselves are owned by packages/infra/alchemy.run.ts
+// (the single source of truth). The bindings below only mirror it for local
+// emulation; everything here runs against local state (`.wrangler/state`), never
+// real Cloudflare resources. `npm run dev` (Alchemy + Vite, HMR) is unaffected.
+{
+  "name": "local-first-kit-web-dev",
+  "main": "worker-entry.ts",
+  "compatibility_date": "2026-04-30",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "directory": ".svelte-kit/cloudflare",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "html_handling": "auto-trailing-slash",
+    "run_worker_first": false
+  },
+  "vars": {
+    "JWT_SECRET": "local-dev-secret",
+    "PUBLIC_SERVER_URL": "http://localhost:8787"
+  },
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "SYNC_DO",
+        "class_name": "WsServerDurableObject"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": ["WsServerDurableObject"]
+    }
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "local-first-kit-auth",
+      // Ignored in --local mode (state lives in .wrangler/state); placeholder only.
+      "database_id": "00000000-0000-0000-0000-000000000000",
+      "migrations_dir": "../../packages/infra/migrations"
+    }
+  ]
+}

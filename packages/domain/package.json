@@ -1,0 +1,21 @@
+{
+  "name": "@local-first-kit/domain",
+  "type": "module",
+  "exports": {
+    ".": {
+      "default": "./src/index.ts"
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "check-types": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@local-first-kit/data": "*",
+    "tinybase": "^8.2.0"
+  },
+  "devDependencies": {
+    "typescript": "^5",
+    "vitest": "^4.1.5"
+  }
+}

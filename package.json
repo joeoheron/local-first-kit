@@ -1,0 +1,24 @@
+{
+  "name": "local-first-kit",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "type": "module",
+  "scripts": {
+    "dev": "npm run dev --workspace @local-first-kit/infra",
+    "dev:workers": "npm run dev:workers --workspace web",
+    "check-types": "npm run check-types --workspaces",
+    "deploy:staging": "npm run deploy:staging --workspace @local-first-kit/infra",
+    "deploy:prod": "npm run deploy:prod --workspace @local-first-kit/infra",
+    "destroy:staging": "npm run destroy:staging --workspace @local-first-kit/infra",
+    "destroy:prod": "npm run destroy:prod --workspace @local-first-kit/infra"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20251213.0",
+    "@types/node": "^22.13.14",
+    "typescript": "^5"
+  },
+  "packageManager": "npm@11.2.0"
+}

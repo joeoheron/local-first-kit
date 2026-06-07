@@ -1,0 +1,21 @@
+{
+  "name": "@local-first-kit/infra",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "alchemy dev --stage test",
+    "deploy:staging": "alchemy deploy --stage test",
+    "deploy:prod": "alchemy deploy --stage production",
+    "destroy:staging": "alchemy destroy --stage test",
+    "destroy:prod": "node -e \"if(process.env.CONFIRM_DESTROY!=='production'){console.error('Set CONFIRM_DESTROY=production to confirm');process.exit(1)}\" && alchemy destroy --stage production",
+    "check-types": "echo 'No types to check in infra package'"
+  },
+  "dependencies": {
+    "@local-first-kit/config": "*",
+    "dotenv": "^17.2.2"
+  },
+  "devDependencies": {
+    "alchemy": "^0.82.1",
+    "typescript": "^5"
+  }
+}
